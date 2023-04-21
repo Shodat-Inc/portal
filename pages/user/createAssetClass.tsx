@@ -144,7 +144,7 @@ const createAssetClass = () => {
 
                                     <div className={`form-group ${styles.formGroup}`}>
                                         <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                            <a href='http://localhost:3000/user/createAssetClass' className={`${styles.btnCreateBlock}`}>
+                                            <a href='http://localhost:3000/user/createSubAssets' className={`${styles.btnCreateBlock}`}>
                                                 <i className="fa fa-plus"></i>
                                                 <div className={`${styles.blockText}`}>Create Sub Asset</div>
                                             </a>

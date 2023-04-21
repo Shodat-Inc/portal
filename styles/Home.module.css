@@ -451,3 +451,9 @@
 .blueBg:hover {
     background-color: #ffffff !important;
 }
+
+.loginTitle, 
+.underlinev2 {
+    text-decoration: none;
+    color: #ffffff;
+}
