@@ -70,7 +70,6 @@ const welcome = () => {
                     <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                         <div className="sb-sidenav-menu">
                             <div className="nav">
-                                {/* <div className="sb-sidenav-menu-heading">Core</div> */}
                                 <a className="nav-link" href="http://localhost:3000/user/welcome">
                                     <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
                                     Dashboard

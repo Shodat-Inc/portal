@@ -22,39 +22,3 @@ export default function handler(req, res) {
         return
     }
 };
-
-
-// type Data = {
-//         id: number,
-//         username: string,
-//         password: string,
-//         userId: number,
-//         userRole: string
-// }
-
-// export default function handler(
-//     req: NextApiRequest,
-//     res: NextApiResponse<Data>
-// ) {
-//     const { method } = req;
-//     // res.status(200).json({ name: 'John Doe new111 ' })
-
-//     switch (method) {
-//         case "GET":
-//             res.status(200).json(users);
-//             break;
-//         case "POST":
-//             const { todo, completed } = req.body;
-//             users.push({
-//                 // id: users.length + 1,
-//                 username,
-//                 password,
-//             });
-//             res.status(200).json(users);
-//             break;
-//         default:
-//             res.setHeader("Allow", ["GET", "POST"]);
-//             res.status(405).end(`Method ${method} Not Allowed`);
-//             break;
-//     }
-// }
