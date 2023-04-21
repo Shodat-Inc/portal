@@ -57,7 +57,7 @@ const createSubAsset = () => {
                             <li><a className="dropdown-item" href="#!">Settings</a></li>
                             <li><a className="dropdown-item" href="#!">Activity Log</a></li>
                             <li><hr className="dropdown-divider" /></li>
-                            <li><a className="dropdown-item" href="#!">Logout</a></li>
+                            <li><a className="dropdown-item" href="#!" onClick={() => signOut()}>Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -69,33 +69,33 @@ const createSubAsset = () => {
                     <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                         <div className="sb-sidenav-menu">
                         <div className="nav">
-                                <a className="nav-link" href="http://localhost:3000/user/welcome">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
+                        <a className="nav-link" href="http://localhost:3000/user/welcome">
+                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     Dashboard
                                 </a>
 
                                 <a className="nav-link" href="http://localhost:3000/user/assetManagement">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
+                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     Asset Mgmt
                                 </a>
 
                                 <a className="nav-link" href="http://localhost:3000/user/eOpsWatch">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
+                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     eOps Watch
                                 </a>
 
                                 <a className="nav-link" href="http://localhost:3000/user/eOpsTrace">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
+                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     eOps Trace
                                 </a>
 
                                 <a className="nav-link" href="http://localhost:3000/user/eOpsProsense">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
+                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     eOps Prosense
                                 </a>
 
                                 <a className="nav-link" href="http://localhost:3000/user/eOpsInsight">
-                                    <div className="sb-nav-link-icon"><i className="fas fa-tachometer-alt"></i></div>
+                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     eOps Insight
                                 </a>
 

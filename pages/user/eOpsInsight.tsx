@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Router from 'next/router'
 
 
-const welcome = () => {
+const eOpsInsight = () => {
     const { data: session } = useSession();
     const router = useRouter()
     console.log("session data", session)
@@ -70,7 +70,7 @@ const welcome = () => {
                     <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                         <div className="sb-sidenav-menu">
                             <div className="nav">
-                            <a className="nav-link" href="http://localhost:3000/user/welcome">
+                                <a className="nav-link" href="http://localhost:3000/user/welcome">
                                     <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     Dashboard
                                 </a>
@@ -80,12 +80,12 @@ const welcome = () => {
                                     Asset Mgmt
                                 </a>
 
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsWatch">
+                                <a className="nav-link" href="">
                                     <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     eOps Watch
                                 </a>
 
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsTrace">
+                                <a className="nav-link" href="">
                                     <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     eOps Trace
                                 </a>
@@ -111,47 +111,13 @@ const welcome = () => {
                 <div id="layoutSidenav_content">
                     <main>
                         <div className="container-fluid px-4">
-                            <h1 className="mt-4">Dashboard</h1>
+                            <h1 className="mt-4">eOps Insight</h1>
                             <ol className="breadcrumb mb-4">
-                                <li className="breadcrumb-item active">Dashboard</li>
+                                <li className="breadcrumb-item active">eOps Insight</li>
                             </ol>
                             <div className="row">
-                                <div className="col-xl-3 col-md-6">
-                                    <div className="card bg-primary text-white mb-4">
-                                        <div className="card-body">Primary Card</div>
-                                        <div className="card-footer d-flex align-items-center justify-content-between">
-                                            <a className="small text-white stretched-link" href="javascript:;">View Details</a>
-                                            <div className="small text-white"><i className="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xl-3 col-md-6">
-                                    <div className="card bg-warning text-white mb-4">
-                                        <div className="card-body">Warning Card</div>
-                                        <div className="card-footer d-flex align-items-center justify-content-between">
-                                            <a className="small text-white stretched-link" href="javascript:;">View Details</a>
-                                            <div className="small text-white"><i className="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xl-3 col-md-6">
-                                    <div className="card bg-success text-white mb-4">
-                                        <div className="card-body">Success Card</div>
-                                        <div className="card-footer d-flex align-items-center justify-content-between">
-                                            <a className="small text-white stretched-link" href="javascript:;">View Details</a>
-                                            <div className="small text-white"><i className="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-xl-3 col-md-6">
-                                    <div className="card bg-danger text-white mb-4">
-                                        <div className="card-body">Danger Card</div>
-                                        <div className="card-footer d-flex align-items-center justify-content-between">
-                                            <a className="small text-white stretched-link" href="javascript:;">View Details</a>
-                                            <div className="small text-white"><i className="fas fa-angle-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
+                                
                             </div>
                         </div>
                     </main>
@@ -175,4 +141,4 @@ const welcome = () => {
         </>
     )
 }
-export default welcome
+export default eOpsInsight
