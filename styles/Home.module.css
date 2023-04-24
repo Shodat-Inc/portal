@@ -457,3 +457,48 @@
     text-decoration: none;
     color: #ffffff;
 }
+
+
+
+.inputWrap input[type="text"] {
+    height: 46px;
+    border: 2px solid #5ab5d4;
+    margin-top: 5px;
+}
+.btnWrap > button, 
+.btnWrap > a {
+    width: 100%;
+}
+.imageBlock {
+    border: 2px solid #5ab5d4;
+    outline: none;
+    border-radius: 5px;
+    height: 172px;
+    width: 100%;
+    margin-bottom: 30px;
+    display: block;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    color: #222222;
+    background-color: #5ab5d4;;
+    transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+}
+.imageBlock span {
+    font-size: 21px;
+}
+
+.folderStructure {
+    text-align: center;
+}
+.folderStructure > button > span, 
+.folderStructure > a > span {
+    margin-top: 15px;
+    display: inline-block;
+}

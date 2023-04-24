@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Router from 'next/router';
 
 
-const eOpsWatch = () => {
+const importImages = () => {
     const { data: session } = useSession();
     const router = useRouter()
     console.log("session data", session)
@@ -114,66 +114,58 @@ const eOpsWatch = () => {
                                 <div className={`${styles.mainContent}`}>
                                     <div className={`${styles.pagination}`}>
                                         <ol>
-                                            <li><a>eOps Watch</a></li>
+                                            <li><a href='http://localhost:3000/user/eOpsWatch'>eOps Watch</a></li>
+                                            <li><a href='http://localhost:3000/user/importProductImages'>Vehicle: Tires</a></li>\
+                                            <li><a>Import Images</a></li>
                                         </ol>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className={`row ${styles.rowMargin} ${styles.flexRow}`}>
-                                <div className='col-sm-6'>
-                                    <h4 className={`${styles.title}`}>Choose a Model</h4>
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`form-group ${styles.selectBlock}`}>
-                                            <label>Select Asset Class</label>
-                                            <select className='form-control'>
-                                                <option value="Vehicles">Vehicles</option>
-                                                <option value="Fright">Fright</option>
-                                                <option value="Gas Station">Gas Station</option>
-                                                <option value="Manufacturing Plants">Manufacturing Plants</option>
-                                            </select>
-                                            <i className="fa fa-sort-down"></i>
-                                        </div>
-                                    </div>
-
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`form-group ${styles.selectBlock}`}>
-                                            <label>Select Sub-Asset </label>
-                                            <select className='form-control'>
-                                                <option value="Tires">Tires</option>
-                                                <option value="Fright">Fright</option>
-                                                <option value="Gas Station">Gas Station</option>
-                                                <option value="Manufacturing Plants">Manufacturing Plants</option>
-                                            </select>
-                                            <i className="fa fa-sort-down"></i>
-                                        </div>
-                                    </div>
-
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`form-group ${styles.selectBlock}`}>
-                                            <label>Training Models</label>
-                                            <select className='form-control'>
-                                                <option value="Water Detection Model">Water Detection Model</option>
-                                                <option value="Fright">Fright</option>
-                                                <option value="Gas Station">Gas Station</option>
-                                                <option value="Manufacturing Plants">Manufacturing Plants</option>
-                                            </select>
-                                            <i className="fa fa-sort-down"></i>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div className='col-sm-6'>
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                            <a href='http://localhost:3000/user/importProductImages' className={`${styles.btnCreateBlock} ${styles.blueBg}`}>
-                                                <i className="fa fa-plus"></i>
-                                                <div className={`${styles.blockText}`}>Import Product Images</div>
-                                            </a>
-                                        </div>
-                                    </div>
+                            <div className={`row ${styles.flexRow}`}>
+                                <div className='col-sm-1'>
+                                    <a href="http://localhost:3000/user/importProductImages" className={`row ${styles.backButton}`}>
+                                        <i className="fa fa-long-arrow-left"></i>
+                                    </a>
                                 </div>
                             </div>
+
+                            <div className={`row ${styles.rowMargin} ${styles.flexRow}`}>
+                                <div className='col-sm-6'>                                   
+                                    <div className={`form-group ${styles.formGroup}`}>
+                                        <div className={`form-group ${styles.selectBlock}`}>
+                                            <label>Select Blob Storage or s3 Bucket</label>
+                                            <select className='form-control'>
+                                                <option value="Name">Name</option>
+                                            </select>
+                                            <i className="fa fa-sort-down"></i>
+                                        </div>
+                                    </div>
+
+                                    <div className={`form-group ${styles.formGroup}`}>
+                                        <div className={`form-group ${styles.selectBlock}`}>
+                                            <label>Select API or FTP Endpoint </label>
+                                            <select className='form-control'>
+                                                <option value="Name">Name</option>
+                                            </select>
+                                            <i className="fa fa-sort-down"></i>
+                                        </div>
+                                    </div>
+
+                                    <div className={`form-group ${styles.formGroup}`}>
+                                        <div className={`form-group ${styles.selectBlock}`}>
+                                            <label>Select Event Stream</label>
+                                            <select className='form-control'>
+                                                <option value="Name">Name</option>
+                                            </select>
+                                            <i className="fa fa-sort-down"></i>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
                         </div>
                     </main>
                     <footer className="py-4 bg-light mt-auto">
@@ -196,4 +188,4 @@ const eOpsWatch = () => {
         </>
     )
 }
-export default eOpsWatch
+export default importImages

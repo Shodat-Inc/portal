@@ -153,7 +153,7 @@ const eOpsTrace = () => {
                                 <div className='col-sm-6'>
                                     <div className={`form-group ${styles.formGroup}`}>
                                         <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                            <a href='http://localhost:3000/user/createAssetClass' className={`${styles.btnCreateBlock} ${styles.blueBg}`}>
+                                            <a href='http://localhost:3000/user/connectSensorInputs' className={`${styles.btnCreateBlock} ${styles.blueBg}`}>
                                                 <i className="fa fa-plus"></i>
                                                 <div className={`${styles.blockText}`}>Connect Sensor Inputs</div>
                                             </a>

@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import Router from 'next/router';
 
 
-const eOpsWatch = () => {
+const importProductImages = () => {
     const { data: session } = useSession();
     const router = useRouter()
     console.log("session data", session)
@@ -114,66 +114,84 @@ const eOpsWatch = () => {
                                 <div className={`${styles.mainContent}`}>
                                     <div className={`${styles.pagination}`}>
                                         <ol>
-                                            <li><a>eOps Watch</a></li>
+                                            <li><a href='http://localhost:3000/user/eOpsWatch'>eOps Watch</a></li>
+                                            <li><a>Vehicle: Tires</a></li>
                                         </ol>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className={`row ${styles.rowMargin} ${styles.flexRow}`}>
-                                <div className='col-sm-6'>
-                                    <h4 className={`${styles.title}`}>Choose a Model</h4>
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`form-group ${styles.selectBlock}`}>
-                                            <label>Select Asset Class</label>
-                                            <select className='form-control'>
-                                                <option value="Vehicles">Vehicles</option>
-                                                <option value="Fright">Fright</option>
-                                                <option value="Gas Station">Gas Station</option>
-                                                <option value="Manufacturing Plants">Manufacturing Plants</option>
-                                            </select>
-                                            <i className="fa fa-sort-down"></i>
-                                        </div>
-                                    </div>
-
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`form-group ${styles.selectBlock}`}>
-                                            <label>Select Sub-Asset </label>
-                                            <select className='form-control'>
-                                                <option value="Tires">Tires</option>
-                                                <option value="Fright">Fright</option>
-                                                <option value="Gas Station">Gas Station</option>
-                                                <option value="Manufacturing Plants">Manufacturing Plants</option>
-                                            </select>
-                                            <i className="fa fa-sort-down"></i>
-                                        </div>
-                                    </div>
-
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`form-group ${styles.selectBlock}`}>
-                                            <label>Training Models</label>
-                                            <select className='form-control'>
-                                                <option value="Water Detection Model">Water Detection Model</option>
-                                                <option value="Fright">Fright</option>
-                                                <option value="Gas Station">Gas Station</option>
-                                                <option value="Manufacturing Plants">Manufacturing Plants</option>
-                                            </select>
-                                            <i className="fa fa-sort-down"></i>
-                                        </div>
-                                    </div>
-
+                            <div className={`row ${styles.flexRow}`}>
+                                <div className='col-sm-1'>
+                                    <a href="http://localhost:3000/user/eOpsWatch" className={`row ${styles.backButton}`}>
+                                        <i className="fa fa-long-arrow-left"></i>
+                                    </a>
                                 </div>
-                                <div className='col-sm-6'>
+                                <div className='col-sm-4'>
+                                    <div className={`${styles.inputWrap}`}>
+                                        <input type='text' name='wearDeductionModel' placeholder='Wear Deduction Model' className='form-control' />
+                                    </div>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <div className={`${styles.btnWrap}`}>
+                                        <button className={`${styles.btnBlue}`}>Model Performance</button>
+                                    </div>
+                                </div>
+                                <div className='col-sm-3'>
+                                    <div className={`${styles.btnWrap}`}>
+                                        <button className={`${styles.btnBlue}`}>Configure Alerts</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={`row ${styles.rowMargin}`}>
+                                <div className="col-sm-4">
                                     <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                            <a href='http://localhost:3000/user/importProductImages' className={`${styles.btnCreateBlock} ${styles.blueBg}`}>
+                                        <div className={`${styles.createBlock}`}>
+                                            <a href='http://localhost:3000/user/importImages' className={`${styles.btnCreateBlock}`}>
                                                 <i className="fa fa-plus"></i>
                                                 <div className={`${styles.blockText}`}>Import Product Images</div>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
+                                <div className="col-sm-4">
+                                    <div className={`form-group ${styles.formGroup}`}>
+                                        <div className={`${styles.imageBlock}`}>
+                                            <span>IMG-1</span>
+                                            {/* <img src ="" alt="" /> */}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="col-sm-4">
+                                    <div className={`form-group ${styles.formGroup}`}>
+                                        <div className={`${styles.imageBlock}`}>
+                                            <span>IMG-2</span>
+                                            {/* <img src ="" alt="" /> */}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
+                            <div className={`row ${styles.rowMargin}`}>
+                                <div className='col-sm-4'>
+                                    <div className={`${styles.folderStructure}`}>
+                                        <button>
+                                            <img src="/folder.png" />
+                                            <span>Front Angle</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className='col-sm-4'>
+                                    <div className={`${styles.folderStructure}`}>
+                                        <button>
+                                            <img src="/folder.png" />
+                                            <span>Side Angle</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </main>
                     <footer className="py-4 bg-light mt-auto">
@@ -196,4 +214,4 @@ const eOpsWatch = () => {
         </>
     )
 }
-export default eOpsWatch
+export default importProductImages
