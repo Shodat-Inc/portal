@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styles from '../../styles/Home.module.css';
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from 'next/router';
 import Router from 'next/router';
-
+import Navbar from './common/navbar';
 
 const createSubAsset = () => {
-    const { data: session } = useSession();
-    const router = useRouter()
-    console.log("session data", session)
+    const { data: session } = useSession();    
     const [open, setOpen] = useState(false);
-    const user = session?.user;
-
-    const handleOpen = () => {
-        const currentState = open;
-        setOpen(!currentState)
-    }
+    const user = session?.user;   
 
     const logout = () => {
         Router.push('/')
@@ -39,17 +32,17 @@ const createSubAsset = () => {
         <>
             <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
-                <a className="navbar-brand ps-3" href="javascript:;">SHODAT</a>
+                <a className="navbar-brand ps-3" href="#!">SHODAT</a>
 
                 <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 </form>
 
                 <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                     <li className="nav-item">
-                        <a className='nav-link' href='javascript:;'>Client1 Tenant</a>
+                        <a className='nav-link' href='#!'>Client1 Tenant</a>
                     </li>
                     <li className="nav-item">
-                        <a className='nav-link' href='javascript:;'>Help</a>
+                        <a className='nav-link' href='#!'>Help</a>
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa fa-user"></i></a>
@@ -66,46 +59,7 @@ const createSubAsset = () => {
 
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
-                    <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                        <div className="sb-sidenav-menu">
-                        <div className="nav">
-                        <a className="nav-link" href="http://localhost:3000/user/welcome">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    Dashboard
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/assetManagement">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    Asset Mgmt
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsWatch">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    eOps Watch
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsTrace">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    eOps Trace
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsProsense">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    eOps Prosense
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsInsight">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    eOps Insight
-                                </a>
-
-                            </div>
-                        </div>
-                        <div className="sb-sidenav-footer">
-                            <div className="small">Logged in as:</div>
-                            Admin
-                        </div>
-                    </nav>
+                    <Navbar />
                 </div>
                 <div id="layoutSidenav_content">
                     <main>
@@ -114,8 +68,8 @@ const createSubAsset = () => {
                                 <div className={`${styles.mainContent}`}>
                                     <div className={`${styles.pagination}`}>
                                         <ol>
-                                            <li><a href='http://localhost:3000/user/assetManagement'>Assets Mgmt</a></li>
-                                            <li><a href='http://localhost:3000/user/createAssetClass'>Vehical Assets Class</a></li>
+                                            <li><a href='/user/assetManagement'>Assets Mgmt</a></li>
+                                            <li><a href='/user/createAssetClass'>Vehical Assets Class</a></li>
                                             <li><a>Create Sub-Asset</a></li>
                                         </ol>
                                     </div>
@@ -123,7 +77,7 @@ const createSubAsset = () => {
                             </div>
                             <div className='row'>
                                 <div className='col-sm-6 col-md-6'>
-                                    <a href='http://localhost:3000/user/assetManagement' className={`${styles.backButton}`}>
+                                    <a href='/user/assetManagement' className={`${styles.backButton}`}>
                                         <i className="fa fa-long-arrow-left"></i>
                                     </a>
                                 </div>
@@ -169,7 +123,7 @@ const createSubAsset = () => {
 
                                     <div className={`form-group ${styles.formGroup}`}>
                                         <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                            <a href='http://localhost:3000/user/createAssetClass' className={`${styles.btnCreateBlock}`}>
+                                            <a href='/user/createAssetClass' className={`${styles.btnCreateBlock}`}>
                                                 <i className="fa fa-plus"></i>
                                                 <div className={`${styles.blockText}`}>Create & Assign Asset Class Tag</div>
                                             </a>
@@ -191,9 +145,19 @@ const createSubAsset = () => {
 
                                     <div className={`${styles.formGroup}`}>
                                         <label>Assign parent or Child Sub-Asset</label>
-                                        <div className={`${styles.searchBoxv2} ${styles.marginZero}`}>
-                                            <input type="text" name='searchBox' id='searchBox' placeholder='Search Assets Classes' />
-                                            <i className={`fa fa-search ${styles.fasearch}`}></i>
+                                        <div className={`${styles.searchBoxOuter}`}>
+                                            <div className={`${styles.searchBoxv2} ${styles.marginZero}`}>
+                                                <input type="text" name='searchBox' id='searchBox' placeholder='Search Assets Classes' />
+                                                <i className={`fa fa-search ${styles.fasearch}`}></i>
+                                            </div>
+                                            <div className={`${styles.suggestionBox}`}>
+                                                <ul className={`${styles.suggestionList}`}>
+                                                    <li><button><i className="fa fa-plus"></i></button> <span>Battery</span></li>
+                                                    <li><button><i className="fa fa-plus"></i></button> <span>Chassis</span></li>
+                                                    <li><button><i className="fa fa-plus"></i></button> <span>Brakes</span></li>
+                                                    
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
 

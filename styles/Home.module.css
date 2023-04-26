@@ -630,3 +630,61 @@
     color: #666;
     padding: 0 5px;
 }
+
+
+.searchBoxOuter {
+    display: inline-block;
+    position: relative;
+}
+.suggestionBox {
+    padding: 0;
+    border: 2px solid #5ab5d4;
+    margin-top: 3px;
+    border-radius: 5px;
+    max-height: 331px;
+    overflow: hidden;
+    min-height: 0;
+}
+.suggestionList {
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    min-height: 00px;
+    max-height: 328px;
+}
+.suggestionList > li > button {
+    height: 40px;
+    width: 40px;
+    background: #c7c7c7;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    margin-right: 10px;
+    color: #777;
+    margin-left: 2px;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+}
+.suggestionList > li > button:hover {    
+    background: #5ab5d4;
+    color: #ffffff;
+    transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+
+}
+.suggestionList > li {
+    padding: 5px 5px;
+    border-bottom: 1px solid #c7c7c7;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}

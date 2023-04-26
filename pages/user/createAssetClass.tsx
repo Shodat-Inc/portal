@@ -2,13 +2,31 @@ import React, { useRef } from 'react';
 import styles from '../../styles/Home.module.css';
 import { signOut, useSession } from "next-auth/react";
 import Router from 'next/router';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+import Navbar from './common/navbar';
+import { getAssetsData } from '../../lib/getassets';
 
-const createAssetClass = () => {
+
+
+export async function getStaticProps() {
+    // Call an external API endpoint to get posts.
+    // You can use any data fetching library
+    // const res = await fetch('/api/getAssets')
+    // const posts = await res.json()
+
+    const localData = await getAssetsData()
+    return {
+        props: {
+            localData,
+        },
+    }
+}
+
+const createAssetClass = (localData: any) => {
     const { data: session } = useSession();
     console.log("session data", session)
     const user = session?.user;
-    const newassets = useRef("");``
+    const newassets = useRef(""); ``
 
     const logout = () => {
         Router.push('/')
@@ -58,8 +76,6 @@ const createAssetClass = () => {
                 confirmButtonText: 'Okay'
             })
         }
-
-        // console.log("STATUS MESSAGE", data);
     }
 
     return (
@@ -94,46 +110,7 @@ const createAssetClass = () => {
 
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
-                    <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                        <div className="sb-sidenav-menu">
-                            <div className="nav">
-                                <a className="nav-link" href="http://localhost:3000/user/welcome">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    Dashboard
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/assetManagement">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    Asset Mgmt
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsWatch">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    eOps Watch
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsTrace">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    eOps Trace
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsProsense">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    eOps Prosense
-                                </a>
-
-                                <a className="nav-link" href="http://localhost:3000/user/eOpsInsight">
-                                    <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
-                                    eOps Insight
-                                </a>
-
-                            </div>
-                        </div>
-                        <div className="sb-sidenav-footer">
-                            <div className="small">Logged in as:</div>
-                            Admin
-                        </div>
-                    </nav>
+                    <Navbar />
                 </div>
                 <div id="layoutSidenav_content">
                     <main>
@@ -142,7 +119,7 @@ const createAssetClass = () => {
                                 <div className={`${styles.mainContent}`}>
                                     <div className={`${styles.pagination}`}>
                                         <ol>
-                                            <li><a href='http://localhost:3000/user/assetManagement'>Assets Mgmt</a></li>
+                                            <li><a href='/user/assetManagement'>Assets Mgmt</a></li>
                                             <li><a>Create Assets Class</a></li>
                                         </ol>
                                     </div>
@@ -150,7 +127,7 @@ const createAssetClass = () => {
                             </div>
                             <div className='row'>
                                 <div className='col-sm-6 col-md-6'>
-                                    <a href='http://localhost:3000/user/assetManagement' className={`${styles.backButton}`}>
+                                    <a href='/user/assetManagement' className={`${styles.backButton}`}>
                                         <i className="fa fa-long-arrow-left"></i>
                                     </a>
                                 </div>
@@ -181,7 +158,7 @@ const createAssetClass = () => {
 
                                         <div className={`form-group ${styles.formGroup}`}>
                                             <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                                <a href='http://localhost:3000/user/createSubAssets' className={`${styles.btnCreateBlock}`}>
+                                                <a href='/user/createSubAssets' className={`${styles.btnCreateBlock}`}>
                                                     <i className="fa fa-plus"></i>
                                                     <div className={`${styles.blockText}`}>Create Sub Asset</div>
                                                 </a>
@@ -190,7 +167,7 @@ const createAssetClass = () => {
 
                                         <div className={`form-group ${styles.formGroup}`}>
                                             <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                                <a href='http://localhost:3000/user/createAssetClass' className={`${styles.btnCreateBlock}`}>
+                                                <a href='/user/createAssetClass' className={`${styles.btnCreateBlock}`}>
                                                     <i className="fa fa-plus"></i>
                                                     <div className={`${styles.blockText}`}>Create & Assign Asset Class Tag</div>
                                                 </a>
@@ -199,20 +176,31 @@ const createAssetClass = () => {
 
                                     </div>
                                     <div className={`col-sm-6 ${styles.colpos}`}>
-                                        <div className={`${styles.searchBoxv2}`}>
-                                            <input
-                                                type="text"
-                                                id='searchBox'
-                                                placeholder='Search Assets Classes'
-                                            />
-                                            <i className={`fa fa-search ${styles.fasearch}`}></i>
+                                        <div className={`${styles.searchBoxOuter}`}>
+                                            <div className={`${styles.searchBoxv2}`}>
+                                                <input
+                                                    type="text"
+                                                    id='searchBox'
+                                                    placeholder='Search Assets Classes'
+                                                />
+                                                <i className={`fa fa-search ${styles.fasearch}`}></i>
+                                            </div>
+                                            <div className={`${styles.suggestionBox}`}>
+                                                <ul className={`${styles.suggestionList}`}>
+
+                                                    {localData.localData.map(({ assetName }) => (
+                                                        <li><button><i className="fa fa-plus"></i></button> <span>{assetName}</span></li>
+                                                    ))}
+                                                    {/* <li><button><i className="fa fa-plus"></i></button> <span>Vehicles</span></li>
+                                                    <li><button><i className="fa fa-plus"></i></button> <span>Freight</span></li>
+                                                    <li><button><i className="fa fa-plus"></i></button> <span>Manufacturing Plant</span></li> */}
+
+                                                </ul>
+                                            </div>
                                         </div>
 
                                         <div className={`${styles.saveWrap}`}>
-                                            <button
-                                                className={`${styles.btnsave}`}
-                                            // onClick={() => saveAssets}
-                                            >
+                                            <button className={`${styles.btnsave}`}>
                                                 Save
                                             </button>
                                             <button className={`${styles.btnsave}`}>
@@ -245,4 +233,4 @@ const createAssetClass = () => {
         </>
     )
 }
-export default createAssetClass
+export default createAssetClass;

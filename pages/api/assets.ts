@@ -20,8 +20,6 @@ export default async function handler(req, res) {
 
         // Get the data from the request body
         const { assetName } = req.body;
-        // const name = "amit";
-        // const email = "amitpandey0107@gmail.com"
 
         // Add the new data to the object
         const newData = {
