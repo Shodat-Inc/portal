@@ -1,21 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import styles from '../../styles/Home.module.css';
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from 'next/router';
+import { signOut, useSession } from "next-auth/react";
 import Router from 'next/router';
-
+import Swal from 'sweetalert2'
 
 const createAssetClass = () => {
     const { data: session } = useSession();
-    const router = useRouter()
     console.log("session data", session)
-    const [open, setOpen] = useState(false);
     const user = session?.user;
-
-    const handleOpen = () => {
-        const currentState = open;
-        setOpen(!currentState)
-    }
+    const newassets = useRef("");``
 
     const logout = () => {
         Router.push('/')
@@ -34,22 +27,57 @@ const createAssetClass = () => {
         );
     }
 
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        var formData = new FormData(e.target);
+        const form_values = Object.fromEntries(formData);
+        const response = await fetch('/api/assets', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(
+                {
+                    assetName: `${form_values.newassets}`,
+                }
+            )
+        });
+        const data = await response.json();
+        if (data) {
+            Swal.fire({
+                title: 'Success!',
+                text: data.message,
+                icon: 'success',
+                confirmButtonText: 'Okay'
+            })
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: "Something went wrong, please try again!",
+                icon: 'error',
+                confirmButtonText: 'Okay'
+            })
+        }
+
+        // console.log("STATUS MESSAGE", data);
+    }
+
     return (
 
         <>
             <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
-                <a className="navbar-brand ps-3" href="javascript:;">SHODAT</a>
+                <a className="navbar-brand ps-3" href="#!">SHODAT</a>
 
                 <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 </form>
 
                 <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                     <li className="nav-item">
-                        <a className='nav-link' href='javascript:;'>Client1 Tenant</a>
+                        <a className='nav-link' href='#!'>Client1 Tenant</a>
                     </li>
                     <li className="nav-item">
-                        <a className='nav-link' href='javascript:;'>Help</a>
+                        <a className='nav-link' href='#!'>Help</a>
                     </li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa fa-user"></i></a>
@@ -68,8 +96,8 @@ const createAssetClass = () => {
                 <div id="layoutSidenav_nav">
                     <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                         <div className="sb-sidenav-menu">
-                        <div className="nav">
-                        <a className="nav-link" href="http://localhost:3000/user/welcome">
+                            <div className="nav">
+                                <a className="nav-link" href="http://localhost:3000/user/welcome">
                                     <div className="sb-nav-link-icon"><i className="fa fa-tachometer"></i></div>
                                     Dashboard
                                 </a>
@@ -135,49 +163,66 @@ const createAssetClass = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={`row ${styles.rowMargin}`}>
-                                <div className='col-sm-6'>
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <label htmlFor="name">New Asset Class</label>
-                                        <input type="text" className={`form-control ${styles.formControl}`} placeholder='Name' />
-                                    </div>
 
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                            <a href='http://localhost:3000/user/createSubAssets' className={`${styles.btnCreateBlock}`}>
-                                                <i className="fa fa-plus"></i>
-                                                <div className={`${styles.blockText}`}>Create Sub Asset</div>
-                                            </a>
+                            <form method='post' onSubmit={handleSubmit}>
+                                <div className={`row ${styles.rowMargin}`}>
+                                    <div className='col-sm-6'>
+                                        <div className={`form-group ${styles.formGroup}`}>
+                                            <label htmlFor="name">New Asset Class</label>
+                                            <input
+                                                type="text"
+                                                className={`form-control ${styles.formControl}`}
+                                                placeholder='Name'
+                                                onChange={(e) => (newassets.current = e.target.value)}
+                                                name='newassets'
+                                                required
+                                            />
                                         </div>
-                                    </div>
 
-                                    <div className={`form-group ${styles.formGroup}`}>
-                                        <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
-                                            <a href='http://localhost:3000/user/createAssetClass' className={`${styles.btnCreateBlock}`}>
-                                                <i className="fa fa-plus"></i>
-                                                <div className={`${styles.blockText}`}>Create & Assign Asset Class Tag</div>
-                                            </a>
+                                        <div className={`form-group ${styles.formGroup}`}>
+                                            <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
+                                                <a href='http://localhost:3000/user/createSubAssets' className={`${styles.btnCreateBlock}`}>
+                                                    <i className="fa fa-plus"></i>
+                                                    <div className={`${styles.blockText}`}>Create Sub Asset</div>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
 
+                                        <div className={`form-group ${styles.formGroup}`}>
+                                            <div className={`${styles.createBlock} ${styles.createBlockv2}`}>
+                                                <a href='http://localhost:3000/user/createAssetClass' className={`${styles.btnCreateBlock}`}>
+                                                    <i className="fa fa-plus"></i>
+                                                    <div className={`${styles.blockText}`}>Create & Assign Asset Class Tag</div>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div className={`col-sm-6 ${styles.colpos}`}>
+                                        <div className={`${styles.searchBoxv2}`}>
+                                            <input
+                                                type="text"
+                                                id='searchBox'
+                                                placeholder='Search Assets Classes'
+                                            />
+                                            <i className={`fa fa-search ${styles.fasearch}`}></i>
+                                        </div>
+
+                                        <div className={`${styles.saveWrap}`}>
+                                            <button
+                                                className={`${styles.btnsave}`}
+                                            // onClick={() => saveAssets}
+                                            >
+                                                Save
+                                            </button>
+                                            <button className={`${styles.btnsave}`}>
+                                                Cancel
+                                            </button>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <div className={`col-sm-6 ${styles.colpos}`}>
-                                    <div className={`${styles.searchBoxv2}`}>
-                                        <input type="text" name='searchBox' id='searchBox' placeholder='Search Assets Classes' />
-                                        <i className={`fa fa-search ${styles.fasearch}`}></i>
-                                    </div>
-
-                                    <div className={`${styles.saveWrap}`}>
-                                        <button className={`${styles.btnsave}`}>
-                                            Save
-                                        </button>
-                                        <button className={`${styles.btnsave}`}>
-                                            Cancel
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </main>
                     <footer className="py-4 bg-light mt-auto">

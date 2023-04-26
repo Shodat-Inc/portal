@@ -502,3 +502,131 @@
     margin-top: 15px;
     display: inline-block;
 }
+
+
+
+.imageDetailWrap {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.imageDetailWrap .imageDetail{
+    margin-right: 30px;
+}
+.imageDetailWrap .undoChanges{
+    margin-right: 30px;
+}
+.imageDetailWrap .undoChanges button {
+    outline: none;
+    border: 0;
+    background: 0;
+    margin: 0;
+    padding: 0;
+}
+.imageDetailWrap .undoChanges span{
+    margin-left: 10px;
+}
+.imageDetailWrap .regionsShown{}
+.checkWrap {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+}
+.checkWrap input[type="checkbox"]{
+    transform: scale(3.5 , 1.5);
+    margin: 0 0 0 15px;
+    padding: 0;
+    position: relative;
+    z-index: 9;
+    opacity: 0;
+    display: inline-block;
+}
+.checkWrap .chklbl {
+    position: absolute;
+    background: #cccccc;
+    height: 20px;
+    width: 46px;
+    left: -2px;
+    top: 2px;
+    border-radius: 30px;
+    transition: all 0.4s ease-in;
+}
+.checkWrap .chklbl:after {
+    content: "";
+    position: absolute;
+    height: 13px;
+    width: 13px;
+    background: #ffffff;
+    border-radius: 50%;
+    left: 6px;
+    top: 3px;
+    transition: all 0.4s ease-in;
+}
+.checkWrap input[type="checkbox"]:checked + .chklbl{
+    background: #5ab5d4;
+    transition: all 0.4s ease-in-out;
+}
+.checkWrap input[type="checkbox"]:checked + .chklbl:after{
+    right: 6px;
+    left: auto;
+    transition: all 0.4s ease-in-out;
+}
+.imageWrapp {
+    background-color: #e5e5e5;
+    min-height: 530px;
+    text-align: center;
+}
+.imageWrapp img {
+    display: inline-block;
+}
+
+.detailWrap {}
+.detailWrap .sideBlock {
+    margin-bottom: 40px;
+}
+.detailWrap h5 {
+    margin-bottom: 20px;
+    color: #555555;
+}
+.detailWrap .tags {}
+.detailWrap .tags a{
+    background: #e5e5e5;
+    color: #000000;
+    text-decoration: none;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    height: 38px;
+    padding: 5px 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    font-size: 15px;
+}
+.detailWrap .tags a i {
+    margin-left: 8px;
+}
+.detailWrap .sliderWrap {}
+.detailWrap .sliderWrap p {}
+.detailWrap .sliderWrap .rangeSlider {}
+.detailWrap .sliderWrap .rangeSlider input[type="range"] {
+    width: 80%;
+}
+.detailWrap .sliderWrap .rangeSlider label {
+    text-transform: capitalize;
+    display: block;
+}
+.detailWrap .predictionsTxt {}
+.detailWrap .predictionsTxt span{
+    color: red;
+}
+.detailWrap .predictionsTable {
+    margin-top: 20px;
+}
+.predictionsTable table thead th{
+    background: #e5e5e5;
+    height: 40px;
+    vertical-align: middle;
+    color: #666;
+    padding: 0 5px;
+}

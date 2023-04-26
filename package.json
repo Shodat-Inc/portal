@@ -24,6 +24,7 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
+    "sweetalert2": "^11.7.3",
     "typescript": "5.0.2"
   },
   "devDependencies": {
