@@ -20,7 +20,7 @@ const Signin = ({ providers }) => {
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     </p>
                     <p className="flex flex-col items-center justify-center mt-10 text-center">
-                        <span>Don't have an account?</span>
+                        <span>Dont have an account?</span>
                         <a href="#" className={`underline ${styles.underlinev2}`}>Get Started!</a>
                     </p>
                     <p className="mt-6 text-sm text-center text-gray-300">
@@ -92,7 +92,7 @@ const Signin = ({ providers }) => {
                                                                 ></path>
                                                             </svg>
                                                         </span>
-                                                        <span className="text-sm font-medium text-gray-800 group-hover:text-white">Sign in with{' '} {provider.name}</span>
+                                                        <span className="text-sm font-medium text-gray-800 group-hover:text-white">Sign in with  {provider.name}</span>
                                                     </a>
                                                 </div>
                                             )
@@ -107,7 +107,7 @@ const Signin = ({ providers }) => {
     )
 }
 export default Signin
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context:any) {
     const { req } = context;
     const session = await getSession({ req });
     const providers = await getProviders()

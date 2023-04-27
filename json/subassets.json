@@ -1,0 +1,26 @@
+[
+    {
+        "assetName": "Battery",
+        "assetDescription": "Lorem Ipsum is a dummy text",
+        "propertyValue1": "11",
+        "propertyValue2": "22",
+        "propertyValue3": "33",
+        "parentAssetName": "Vehicles"
+    },
+    {
+        "assetName": "Brakes",
+        "assetDescription": "Lorem Ipsum is a dummy text",
+        "propertyValue1": "11",
+        "propertyValue2": "22",
+        "propertyValue3": "33",
+        "parentAssetName": "Vehicles"
+    },
+    {
+        "assetName": "Chassis",
+        "assetDescription": "Lorem Ipsum Chassis",
+        "propertyValue1": "111",
+        "propertyValue2": "222",
+        "propertyValue3": "333",
+        "parentAssetName": "Vehicles"
+    }
+]

@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../../styles/Home.module.css';
-import { signOut, useSession } from "next-auth/react";
-import { useRouter } from 'next/router';
+import { useSession } from "next-auth/react";
 import Router from 'next/router';
 import Navbar from './common/navbar';
+import Topbar from './common/topbar';
+import Footer from './common/footer';
+import Link from 'next/link';
+import Image from 'next/image';
 
 
-const connectSensorInputs = () => {
+const ConnectSensorInputs = () => {
     const { data: session } = useSession();
-    console.log("session data", session)
     const user = session?.user;
     const logout = () => {
         Router.push('/')
@@ -30,33 +32,7 @@ const connectSensorInputs = () => {
     return (
 
         <>
-            <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-
-                <a className="navbar-brand ps-3" href="#!">SHODAT</a>
-
-                <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                </form>
-
-                <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                    <li className="nav-item">
-                        <a className='nav-link' href='#!'>Client1 Tenant</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className='nav-link' href='#!'>Help</a>
-                    </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa fa-user fa-fw"></i></a>
-                        <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a className="dropdown-item" href="#!">Settings</a></li>
-                            <li><a className="dropdown-item" href="#!">Activity Log</a></li>
-                            <li><hr className="dropdown-divider" /></li>
-                            <li><a className="dropdown-item" href="#!" onClick={() => signOut()}>Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-
-
+            <Topbar />
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
                     <Navbar />
@@ -68,8 +44,8 @@ const connectSensorInputs = () => {
                                 <div className={`${styles.mainContent}`}>
                                     <div className={`${styles.pagination}`}>
                                         <ol>
-                                            <li><a href='/user/eOpsTrace'>eOps Trace</a></li>
-                                            <li><a>Vehicle: Battery</a></li>
+                                            <li><Link href='/user/eOpsTrace'>eOps Trace</Link></li>
+                                            <li>Vehicle: Battery</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -77,9 +53,9 @@ const connectSensorInputs = () => {
 
                             <div className={`row ${styles.flexRow}`}>
                                 <div className='col-sm-1'>
-                                    <a href="/user/eOpsTrace" className={`row ${styles.backButton}`}>
+                                    <Link href="/user/eOpsTrace" className={`row ${styles.backButton}`}>
                                         <i className="fa fa-long-arrow-left"></i>
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className='col-sm-3'>
                                     <div className={`${styles.inputWrap}`}>
@@ -107,10 +83,10 @@ const connectSensorInputs = () => {
                                 <div className="col-sm-4">
                                     <div className={`form-group ${styles.formGroup}`}>
                                         <div className={`${styles.createBlock}`}>
-                                            <a href='/user/connectSensor' className={`${styles.btnCreateBlock}`}>
+                                            <Link href='/user/connectSensor' className={`${styles.btnCreateBlock}`}>
                                                 <i className="fa fa-plus"></i>
                                                 <div className={`${styles.blockText}`}>Connect Sensor Input</div>
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +94,6 @@ const connectSensorInputs = () => {
                                     <div className={`form-group ${styles.formGroup}`}>
                                         <div className={`${styles.imageBlock}`}>
                                             <span>Temperature</span>
-                                            {/* <img src ="" alt="" /> */}
                                         </div>
                                     </div>
                                 </div>
@@ -126,7 +101,6 @@ const connectSensorInputs = () => {
                                     <div className={`form-group ${styles.formGroup}`}>
                                         <div className={`${styles.imageBlock}`}>
                                             <span>Swell Rate</span>
-                                            {/* <img src ="" alt="" /> */}
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +110,7 @@ const connectSensorInputs = () => {
                                 <div className='col-sm-4'>
                                     <div className={`${styles.folderStructure}`}>
                                         <button>
-                                            <img src="/folder.png" />
+                                            <Image src="/folder.png" alt="" />
                                             <span>C-Rate</span>
                                         </button>
                                     </div>
@@ -144,7 +118,7 @@ const connectSensorInputs = () => {
                                 <div className='col-sm-4'>
                                     <div className={`${styles.folderStructure}`}>
                                         <button>
-                                            <img src="/folder.png" />
+                                            <Image src="/folder.png" alt="" />
                                             <span>Impedance</span>
                                         </button>
                                     </div>
@@ -153,24 +127,11 @@ const connectSensorInputs = () => {
 
                         </div>
                     </main>
-                    <footer className="py-4 bg-light mt-auto">
-                        <div className="container-fluid px-4">
-                            <div className="d-flex align-items-center justify-content-between small">
-                                <div className="text-muted">Copyright &copy; Your Website 2023</div>
-                                <div>
-                                    <a href="#!">Privacy Policy</a>
-                                    &middot;
-                                    <a href="#!">Terms &amp; Conditions</a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
+                    <Footer />
                 </div>
             </div>
-
-
 
         </>
     )
 }
-export default connectSensorInputs
+export default ConnectSensorInputs

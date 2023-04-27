@@ -1,9 +1,7 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { Users } from '../../user';
 
 
-export default function handler(req, res) {
+export default function handler(req:any, res:any) {
     try {
         if (req.method !== 'POST') {
             res.status(405).send({ message: 'Only POST requests allowed' })

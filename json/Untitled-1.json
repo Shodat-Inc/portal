@@ -1,0 +1,15 @@
+[
+    {
+        "parentAssetName":"Vehicles",
+        "subAsset":[
+            {
+                "subAssetName":"Battery",
+                "subAssetSlug":"battery",
+                "subAssetDescription":"This is an example of sub-asset",
+                "property1Value":10,
+                "property2Value":10,
+                "property3Value":10
+            }
+        ]
+    }
+]

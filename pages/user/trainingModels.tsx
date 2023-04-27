@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from '../../styles/Home.module.css';
-import { signOut, useSession } from "next-auth/react";
-import { useRouter } from 'next/router';
+import { useSession } from "next-auth/react";
 import Router from 'next/router';
 import Navbar from './common/navbar';
+import Topbar from './common/topbar';
+import Footer from './common/footer';
+import Link from 'next/link';
+import Image from 'next/image';
 
-const trainingModels = () => {
+const TrainingModels = () => {
     const { data: session } = useSession();    
     const user = session?.user;
     const logout = () => {
@@ -28,33 +31,7 @@ const trainingModels = () => {
     return (
 
         <>
-            <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-
-                <a className="navbar-brand ps-3" href="#!">SHODAT</a>
-
-                <form className="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                </form>
-
-                <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                    <li className="nav-item">
-                        <a className='nav-link' href='#!'>Client1 Tenant</a>
-                    </li>
-                    <li className="nav-item">
-                        <a className='nav-link' href='#!'>Help</a>
-                    </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa fa-user fa-fw"></i></a>
-                        <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a className="dropdown-item" href="#!">Settings</a></li>
-                            <li><a className="dropdown-item" href="#!">Activity Log</a></li>
-                            <li><hr className="dropdown-divider" /></li>
-                            <li><a className="dropdown-item" href="#!" onClick={() => signOut()}>Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-
-
+            <Topbar />
             <div id="layoutSidenav">
                 <div id="layoutSidenav_nav">
                     <Navbar />
@@ -66,8 +43,8 @@ const trainingModels = () => {
                                 <div className={`${styles.mainContent}`}>
                                     <div className={`${styles.pagination}`}>
                                         <ol>
-                                            <li><a href='/user/eOpsWatch'>eOps Watch</a></li>
-                                            <li><a>Vehicle: Engine</a></li>
+                                            <li><Link href='/user/eOpsWatch'>eOps Watch</Link></li>
+                                            <li>Vehicle: Engine</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -75,9 +52,9 @@ const trainingModels = () => {
 
                             <div className={`row ${styles.flexRow}`}>
                                 <div className='col-sm-1'>
-                                    <a href="/user/eOpsWatch" className={`row ${styles.backButton}`}>
+                                    <Link href="/user/eOpsWatch" className={`row ${styles.backButton}`}>
                                         <i className="fa fa-long-arrow-left"></i>
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className='col-sm-4'>
                                     <div className={`${styles.inputWrap}`}>
@@ -120,7 +97,7 @@ const trainingModels = () => {
                             <div className={`row ${styles.rowMargin}`}>
                                 <div className='col-sm-8'>
                                     <div className={`${styles.imageWrapp}`}>
-                                        <img src='/crack.png' alt='crackImage' />
+                                        <Image src='/crack.png' alt='crackImage' />
                                     </div>
                                 </div>
                                 <div className='col-sm-4'>
@@ -128,7 +105,7 @@ const trainingModels = () => {
                                         <div className={`${styles.sideBlock}`}>
                                             <h5>My Objects</h5>
                                             <div className={`${styles.tags}`}>
-                                                <a href='#'>Crystallization <i className="fa fa-times"></i></a>
+                                                <Link href='#'>Crystallization <i className="fa fa-times"></i></Link>
                                             </div>
                                             <div className={`${styles.sliderWrap}`}>
                                                 <p>Only show suggested objects if the probability is above the selected threshold</p>
@@ -177,18 +154,7 @@ const trainingModels = () => {
 
                         </div>
                     </main>
-                    <footer className="py-4 bg-light mt-auto">
-                        <div className="container-fluid px-4">
-                            <div className="d-flex align-items-center justify-content-between small">
-                                <div className="text-muted">Copyright &copy; Your Website 2023</div>
-                                <div>
-                                    <a href="#!">Privacy Policy</a>
-                                    &middot;
-                                    <a href="#!">Terms &amp; Conditions</a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
+                    <Footer />
                 </div>
             </div>
 
@@ -197,4 +163,4 @@ const trainingModels = () => {
         </>
     )
 }
-export default trainingModels
+export default TrainingModels

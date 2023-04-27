@@ -1,9 +1,6 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import fsPromises from 'fs/promises';
 import path from 'path';
-
-const dataFilePath = path.join(process.cwd(), 'json/assets.json')
-
+const dataFilePath = path.join(process.cwd(), 'json/subassets.json')
 
 export default async function handler(req:any, res:any) {
     try {
@@ -16,11 +13,16 @@ export default async function handler(req:any, res:any) {
         const objectData = JSON.parse(jsonData);
 
         // Get the data from the request body
-        const { assetName } = req.body;
+        const { assetName, assetDescription, propertyValue1, propertyValue2, propertyValue3, parentAssetName } = req.body;
 
         // Add the new data to the object
         const newData = {
-            assetName
+            assetName, 
+            assetDescription, 
+            propertyValue1, 
+            propertyValue2, 
+            propertyValue3, 
+            parentAssetName
         };
         objectData.push(newData);
 
