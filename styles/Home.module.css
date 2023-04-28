@@ -688,3 +688,13 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.showText {
+    border-bottom: 2px solid lightgrey;
+    padding: 5px 0;
+    font-weight: 500;
+    color: #5ab5d4;
+}
+.viewSubAssets .formGroup label {
+    font-weight: 700;
+}

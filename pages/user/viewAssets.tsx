@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import styles from '../../styles/Home.module.css';
 import { useSession } from "next-auth/react";
+import { useRouter } from 'next/router';
 import Router from 'next/router';
-import { getAssetsData } from '../../lib/getassets';
+import { getSubAssetsData } from '../../lib/getsubassets';
 import Navbar from './common/navbar';
 import Topbar from './common/topbar';
 import Footer from './common/footer';
-import Link from 'next/link'
+import Link from 'next/link';
 
 
 export async function getStaticProps() {
-    const localData = await getAssetsData();
+    const localData = await getSubAssetsData();
     return {
         props: {
             localData
@@ -19,11 +20,18 @@ export async function getStaticProps() {
 }
 
 
-const AssetManagement = (localData: any) => {
+const ViewAssets = (localData: any) => {
     const { data: session } = useSession();
     const loginuser = session?.user;
     const [query, setQuery] = useState('');
-    const [filteredList, setFilteredList] = useState(localData.localData);
+    const router = useRouter();
+    const parentAsset = router.query;
+
+    const filtered = localData.localData.filter((item: any) => {
+        return item.parentAssetName === parentAsset.assets;
+    });
+    const [filteredList, setFilteredList] = useState(filtered);
+
     const logout = () => {
         Router.push('/')
     }
@@ -44,8 +52,7 @@ const AssetManagement = (localData: any) => {
     const handleChange = (e: any) => {
         var lowerCase = e.target.value.toLowerCase()
         setQuery(lowerCase);
-        var updatedList = [...localData.localData];
-
+        var updatedList = [...filtered];
         updatedList = updatedList.filter((item: any) => {
             return item.assetName.toLowerCase().indexOf(lowerCase) !== -1;
         })
@@ -67,7 +74,10 @@ const AssetManagement = (localData: any) => {
                                 <div className={`${styles.mainContent}`}>
                                     <div className={`${styles.pagination}`}>
                                         <ol>
-                                            <li>Assets Mgmt</li>
+                                            <li><Link href="/user/assetManagement">Assets Mgmt</Link></li>
+                                            {parentAsset.assets ?
+                                                <li>{parentAsset.assets}</li>
+                                                : ""}
                                         </ol>
                                     </div>
                                 </div>
@@ -96,9 +106,17 @@ const AssetManagement = (localData: any) => {
                             <div className={`row ${styles.rowMargin}`}>
                                 <div className='col-sm-3'>
                                     <div className={`${styles.createBlock}`}>
-                                        <Link href='/user/createAssetClass' className={`${styles.btnCreateBlock}`}>
+                                        <Link
+                                            href={{
+                                                pathname: '/user/createSubAssets',
+                                                query: {
+                                                    assets: parentAsset.assets
+                                                }
+                                            }}
+                                            className={`${styles.btnCreateBlock}`}
+                                        >
                                             <i className="fa fa-plus"></i>
-                                            <div className={`${styles.blockText}`}>Create Asset Class</div>
+                                            <div className={`${styles.blockText}`}>Create Sub Asset</div>
                                         </Link>
                                     </div>
                                 </div>
@@ -108,10 +126,10 @@ const AssetManagement = (localData: any) => {
                                         <div className={`${styles.createBlock}`}>
                                             <Link
                                                 href={{
-                                                    // pathname: '/user/createSubAssets',
-                                                    pathname: '/user/viewAssets',
+                                                    pathname: '/user/viewSubAssets',
                                                     query: {
-                                                        assets: assetName.assetName
+                                                        subassets: assetName.assetName,
+                                                        parentasset : parentAsset.assets
                                                     }
                                                 }}
                                                 className={`${styles.btnCreateBlock} ${styles.btnBgBlue}`}
@@ -128,9 +146,7 @@ const AssetManagement = (localData: any) => {
                 </div>
             </div>
 
-
-
         </>
     )
 }
-export default AssetManagement
+export default ViewAssets

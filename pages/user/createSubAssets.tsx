@@ -104,7 +104,14 @@ const CreateSubAsset = (subAssetData: any) => {
                                             <li><Link href='/user/assetManagement'>Assets Mgmt</Link></li>
                                             {parentAsset.assets ?
                                                 <li>
-                                                    <Link href='/user/createAssetClass'>
+                                                    <Link 
+                                                    href={{
+                                                        pathname: '/user/viewAssets',
+                                                        query: {
+                                                            assets: parentAsset.assets
+                                                        }
+                                                    }}
+                                                    >
                                                         {parentAsset.assets} Assets Class
                                                     </Link>
                                                 </li>
