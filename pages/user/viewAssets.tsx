@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../../styles/Home.module.css';
-import { useSession } from "next-auth/react";
 import { useRouter } from 'next/router';
-import Router from 'next/router';
 import { getSubAssetsData } from '../../lib/getsubassets';
 import Navbar from './common/navbar';
 import Topbar from './common/topbar';
@@ -19,10 +17,7 @@ export async function getStaticProps() {
     }
 }
 
-
 const ViewAssets = (localData: any) => {
-    const { data: session } = useSession();
-    const loginuser = session?.user;
     const [query, setQuery] = useState('');
     const router = useRouter();
     const parentAsset = router.query;
@@ -30,24 +25,7 @@ const ViewAssets = (localData: any) => {
     const filtered = localData.localData.filter((item: any) => {
         return item.parentAssetName === parentAsset.assets;
     });
-    const [filteredList, setFilteredList] = useState(filtered);
-
-    const logout = () => {
-        Router.push('/')
-    }
-    if (loginuser?.role !== "admin") {
-        return (
-            <section className="grid h-screen place-items-center">
-                <div className="w-25">
-                    <p>You do not have permission to view this page!</p>
-                </div>
-                <div>
-                    <button onClick={logout}>Go Back</button>
-                </div>
-            </section>
-        );
-    }
-
+    const [filteredList, setFilteredList] = useState(filtered);    
 
     const handleChange = (e: any) => {
         var lowerCase = e.target.value.toLowerCase()

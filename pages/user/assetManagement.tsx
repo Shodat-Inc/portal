@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styles from '../../styles/Home.module.css';
-import { useSession } from "next-auth/react";
-import Router from 'next/router';
 import { getAssetsData } from '../../lib/getassets';
 import Navbar from './common/navbar';
 import Topbar from './common/topbar';
@@ -18,29 +16,9 @@ export async function getStaticProps() {
     }
 }
 
-
 const AssetManagement = (localData: any) => {
-    const { data: session } = useSession();
-    const loginuser = session?.user;
     const [query, setQuery] = useState('');
-    const [filteredList, setFilteredList] = useState(localData.localData);
-    const logout = () => {
-        Router.push('/')
-    }
-    if (loginuser?.role !== "admin") {
-        return (
-            <section className="grid h-screen place-items-center">
-                <div className="w-25">
-                    <p>You do not have permission to view this page!</p>
-                </div>
-                <div>
-                    <button onClick={logout}>Go Back</button>
-                </div>
-            </section>
-        );
-    }
-
-
+    const [filteredList, setFilteredList] = useState(localData.localData); 
     const handleChange = (e: any) => {
         var lowerCase = e.target.value.toLowerCase()
         setQuery(lowerCase);

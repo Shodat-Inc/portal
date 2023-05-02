@@ -1,8 +1,6 @@
 import React, { useRef } from 'react';
 import styles from '../../styles/Home.module.css';
-import { useSession } from "next-auth/react";
 import { useRouter } from 'next/router';
-import Router from 'next/router';
 import Navbar from './common/navbar';
 import Footer from './common/footer';
 import Topbar from './common/topbar';
@@ -20,33 +18,13 @@ export async function getStaticProps() {
 }
 
 const CreateSubAsset = (subAssetData: any) => {
-    const { data: session } = useSession();
-    const user = session?.user;
     const router = useRouter();
     const assetName = useRef("");
     const assetDescription = useRef("");
     const propertyValue1 = useRef("");
     const propertyValue2 = useRef("");
     const propertyValue3 = useRef("");
-    const parentAsset = router.query;
-    const logout = () => {
-        Router.push('/')
-    }
-
-    if (user?.role !== "admin") {
-        return (
-            <section className="grid h-screen place-items-center">
-                <div className="w-25">
-                    <p>You do not have permission to view this page!</p>
-                </div>
-                <div>
-                    <button onClick={logout}>Go Back</button>
-                </div>
-            </section>
-        );
-    }
-
-
+    const parentAsset = router.query;    
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         var formData = new FormData(e.target);

@@ -2,8 +2,28 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
 import styles from '../../../styles/Home.module.css';
+import { useSession } from "next-auth/react";
+import Router from 'next/router';
+
 const Topbar = () => {
+    const { data: session } = useSession();
+    const loginuser = session?.user;
     const [open, setOpen] = useState(false);
+    const logout = () => {
+        Router.push('/')
+    }
+    // if (loginuser?.role !== "admin") {
+    //     return (
+    //         <section className="grid h-screen place-items-center">
+    //             <div className="w-25">
+    //                 <p>You do not have permission to view this page!</p>
+    //             </div>
+    //             <div>
+    //                 <button onClick={logout}>Go Back</button>
+    //             </div>
+    //         </section>
+    //     );
+    // }
     const openDropdown =() => {
         setOpen(!open)
     }
@@ -29,7 +49,8 @@ const Topbar = () => {
                         <li><Link className="dropdown-item" href="#!">Settings</Link></li>
                         <li><Link className="dropdown-item" href="#!">Activity Log</Link></li>
                         <li><hr className="dropdown-divider" /></li>
-                        <li><Link className="dropdown-item" href="#!" onClick={() => signOut()}>Logout</Link></li>
+                        {/* <li><Link className="dropdown-item" href="#!" onClick={() => signOut()}>Logout</Link></li> */}
+                        <li><Link className="dropdown-item" href="#!" onClick={logout}>Logout</Link></li>
                     </ul>
                     : '' }
                 </li>
