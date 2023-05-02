@@ -698,3 +698,9 @@
 .viewSubAssets .formGroup label {
     font-weight: 700;
 }
+
+.disBlock {
+    display: block !important;
+    left: -118px;
+    top: 42px;
+}

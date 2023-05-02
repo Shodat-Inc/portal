@@ -1,6 +1,12 @@
 import Link from "next/link";
 import { signOut } from "next-auth/react";
+import { useState } from "react";
+import styles from '../../../styles/Home.module.css';
 const Topbar = () => {
+    const [open, setOpen] = useState(false);
+    const openDropdown =() => {
+        setOpen(!open)
+    }
     return (
         <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 
@@ -17,13 +23,15 @@ const Topbar = () => {
                     <Link className='nav-link' href='#!'>Help</Link>
                 </li>
                 <li className="nav-item dropdown">
-                    <Link className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa fa-user fa-fw"></i></Link>
-                    <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <button onClick={openDropdown} className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i className="fa fa-user fa-fw"></i></button>
+                    {open ? 
+                    <ul className={`dropdown-menu dropdown-menu-end ${open ? styles.disBlock : ''}`} aria-labelledby="navbarDropdown">
                         <li><Link className="dropdown-item" href="#!">Settings</Link></li>
                         <li><Link className="dropdown-item" href="#!">Activity Log</Link></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li><Link className="dropdown-item" href="#!" onClick={() => signOut()}>Logout</Link></li>
                     </ul>
+                    : '' }
                 </li>
             </ul>
         </nav>
