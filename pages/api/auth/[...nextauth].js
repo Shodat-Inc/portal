@@ -30,8 +30,9 @@ export const authOptions = {
             },
 
             async authorize(credentials, req) {
+                console.log("server", server)
                 const { email, password } = credentials
-                const res = await fetch(`${server}/api/users`, {
+                const res = await fetch(`https://portalshodat.vercel.app/api/users`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
