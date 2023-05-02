@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials";
+import {server} from '../../../config/index';
 
 export const authOptions = {
 
@@ -30,7 +31,7 @@ export const authOptions = {
 
             async authorize(credentials, req) {
                 const { email, password } = credentials
-                const res = await fetch("http://localhost:3000/api/users", {
+                const res = await fetch(`${server}/api/users`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
