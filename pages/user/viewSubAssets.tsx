@@ -37,7 +37,7 @@ const ViewSubAssets = (localData: any) => {
 
         subAssetData(filtered)
 
-    }, [])
+    }, [localData.localData])
 
     const logout = () => {
         Router.push('/')

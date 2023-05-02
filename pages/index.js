@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { getProviders, getSession, signIn } from "next-auth/react"
 import styles from '../styles/Home.module.css';
 
-const Signin = ({ providers }) => {
+const Signin = ({providers}) => {
     const email = useRef("");
     const password = useRef("");
     return (
@@ -70,7 +70,7 @@ const Signin = ({ providers }) => {
                                 <span className="h-px bg-gray-400 w-14"></span>
                             </span>
                             <div className="flex flex-col space-y-4">
-                                {providers &&
+                                {providers.providers &&
                                     Object.values(providers).map(provider => {
                                         if (provider.name !== "Credentials") {
                                             return (
@@ -107,7 +107,7 @@ const Signin = ({ providers }) => {
     )
 }
 export default Signin
-export async function getServerSideProps(context:any) {
+export async function getServerSideProps(context) {
     const { req } = context;
     const session = await getSession({ req });
     const providers = await getProviders()
